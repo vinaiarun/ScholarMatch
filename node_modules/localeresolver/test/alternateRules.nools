@@ -1,0 +1,28 @@
+rule DummyRule {
+    salience: 1;
+    when {
+        lf : LocaleFactors !isUndefinedOrNull(lf.dummyCountry) &&
+            !isUndefinedOrNull(lf.dummyLang);
+    }
+    then {
+        modify(lf, function() {
+            this.country =  lf.dummyCountry;
+            this.lang = lf.dummyLang;
+        });
+    }
+}
+
+rule Default {
+    salience: 0;
+    when {
+        lf : LocaleFactors
+    }
+    then {
+        modify(lf, function() {
+            this.country =  LocaleFactors.defaults.defaultCountry;
+            this.lang = LocaleFactors.defaults.defaultLang;
+        });
+    }
+}
+
+
