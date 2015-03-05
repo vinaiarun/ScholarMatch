@@ -50,10 +50,11 @@ module.exports = function (router) {
                     });
                 }
 
-                req.query.meetingId.isMeetingCancelled = "true";
                 
                 //Remove meeting from db
                 //commented out - still want to show cancelled meetings
+                //need a way to assign meeting as cancelled to not show 
+                //req.query.meetingId.isMeetingCancelled = "true";
                 /*
                 Meeting.removeMeetingById(req.query.meetingId, function(err) {
                     if(err) {
