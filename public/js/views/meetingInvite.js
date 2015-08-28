@@ -47,6 +47,7 @@ define([
                     format: "dd MM yyyy - HH:ii P",
                     showMeridian: true,
                     autoclose: true,
+                    startDate: date
                 });
 
 
