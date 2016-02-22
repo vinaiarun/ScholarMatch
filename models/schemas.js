@@ -140,7 +140,10 @@ var userSchema = Schema({
     relationships: [{
         type: Schema.Types.ObjectId,
         ref: 'Relationship'
-    }]
+    }],
+    active: Boolean,
+    signUpDate: Date,
+    approvedDate: Date
 });
 
 

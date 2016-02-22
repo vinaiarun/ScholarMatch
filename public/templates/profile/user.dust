@@ -83,6 +83,11 @@
 									<tr><td><a href="/profile/edit#About">+ Add an interesting fact</a></td></tr>
 								{/ownProfile}
 							{/additionalPersonalInfo}
+							{?admin}
+								{#signUpDate}
+									<tr><td><b>Signup Approved Date</b> &nbsp; {signUpDate}<td></tr>
+								{/signUpDate}
+							{/admin}
 						</table>
 					</div>
 
