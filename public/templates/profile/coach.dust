@@ -561,16 +561,16 @@
 
 								<br />
 						<center>
-							<button type="button" class="btnbtn-success" id="login-button" style="height:40px; width:200px; color:white; font-size:16px; background-color:#663333; opacity:.7; border-color:#663333; cursor:default;" onclick="">Something Missing...</button>
+							<button type="button" class="btnbtn-success" id="login-button" style="height:40px; width:200px; color:white; font-size:16px; background-color:#663333; opacity:.7; border-color:#663333; cursor:default;" onclick="">Not Completed...</button>
 						</center>
 					</div>
 					<table style="width:100%; text-align:center; table-layout:fixed;">
 						<tr>
-							<td id="about-status" onclick="loadAbout()" style="cursor:pointer;"><i id="about-complete"></i>About: Something Missing...Go Here</td>
-							<td id="contact-status" onclick="loadContact()" style="cursor:pointer;"><i  id="contact-complete"></i>Contact: Something Missing...Go Here</td>
-							<td id="education-status" onclick="loadEducation()" style="cursor:pointer;"><i id="education-complete"></i>Education: Something Missing...Go Here</td>
-							<td id="industry-status" onclick="loadIndustry()" style="cursor:pointer;"><i  id="industry-complete"></i>Industry: Something Missing...Go Here</td>
-							<td id="references-status" onclick="loadReferences()" style="cursor:pointer;"><i id="references-complete"></i>References: Something Missing...Go Here</td>
+							<td id="about-status" onclick="loadAbout()" style="cursor:pointer;"><i id="about-complete"></i>About: Not Completed...Click Here</td>
+							<td id="contact-status" onclick="loadContact()" style="cursor:pointer;"><i  id="contact-complete"></i>Contact: Not Completed...Click Here</td>
+							<td id="education-status" onclick="loadEducation()" style="cursor:pointer;"><i id="education-complete"></i>Education: Not Completed...Click Here</td>
+							<td id="industry-status" onclick="loadIndustry()" style="cursor:pointer;"><i  id="industry-complete"></i>Industry: Not Completed...Click Here</td>
+							<td id="references-status" onclick="loadReferences()" style="cursor:pointer;"><i id="references-complete"></i>References: Not Completed...Click Here</td>
 						</tr>
 					</table>
 				</div>
