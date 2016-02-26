@@ -53,7 +53,7 @@
 									</thead>
 									<tbody>
 										{#data.results}
-										<tr data-name="{fullName}" data-id="{_id}" data-role="{role}" data-status="{status}">
+										<tr data-name="{fullName}" data-id="{_id}" data-role="{role}" data-status="{status}" data-active="{active}">
 											<td>
 												{fullName}; {email}; <span class="phone">{phone}</span>
 												<a class="button" href="/profile/user?userId={_id}"> Details</a>												
@@ -65,11 +65,7 @@
 												{status}
 											</td>				
 											<td>
-												{^active}
-													Not Active
-												{:else}
-													Active
-												{/active}
+												{active}
 											</td>
 											<td> 
 												<a class="updateStatus" href="#" data-toggle="modal" data-target="#statusModal">Update Status</a>
@@ -125,28 +121,20 @@
 								        	</div>              
 								   		</div>   	      
 								   		<div class="form-group">
-								   			<label for="newStatus" class="col-sm-3 control-label"> Active?:</label>
-								   			<div class="col-sm-6">
-			            					<div style="display:inline;">
-			                					<label class="radio-inline">
-			                    					<input type="radio" name="activeRadios" id="activeRadios"value="true" onclick="isComplete()" class = "activeRadios"
-			                   						{@eq key=usActive value="true"}
-			                   							checked
-			                   						{/eq}
-			                    					> Yes
-			                					</label>
-			            					</div>
-			            					&nbsp;&nbsp;
-				            				<div style="display:inline;">
-				                				<label class="radio-inline">
-					                				<input type="radio" name="activeRadios" id="activeRadios" value="false" onclick="isComplete()" class="activeRadios2"
-				                   					{@eq key=usActive value="false"}
-				                   						checked
-				                   					{/eq}
-				                    				> No
-				                				</label>
-				            				</div>
-								   			</div>
+								       		<label for="currentActive" class="col-sm-3 control-label"> Active?: </label>
+								        	<div class="col-sm-6" id="usActive"> 
+								            
+								        	</div>                  
+								   		</div>									   		
+						        		<div class="form-group">
+								       		<label for="newActiveStatus" class="col-sm-3 control-label"> New Active Status:</label>
+								        	<div class="col-sm-6"> 
+												<select name="newActiveStatus" id="newActiveStatus" class="form-control col-sm-3">
+													<option value="-1">Select the new Active status...</option>
+													<option value="Active">Active</option>
+													<option value="Not Active">Not Active</option>
+												</select>								            	
+								        	</div>
 								   		</div>
 								
 								    	<input type="hidden" name="_csrf" value="{_csrf}" />    

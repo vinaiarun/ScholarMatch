@@ -2,6 +2,7 @@
 
 var userLib = require('../../lib/user')();
 var mongoose = require('mongoose');
+var dateFormat = require('dateformat');
 var User = mongoose.model("User");
 var logger = require('tracer').colorConsole();
 var validator = require('express-validator');
@@ -411,6 +412,8 @@ module.exports = function (router) {
                 model.data.result.ownProfile = false;
                 model.data.result.isConnected = true;
                 model.data.result.admin = true;
+                model.data.result.signUpDate = dateFormat(result.signUpDate, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+                model.data.result.approvedDate = dateFormat(result.approvedDate, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 
                 // res.render(result);
                 res.render('profile/user', model);

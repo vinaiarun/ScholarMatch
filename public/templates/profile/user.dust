@@ -85,7 +85,7 @@
 							{/additionalPersonalInfo}
 							{?admin}
 								{#signUpDate}
-									<tr><td><b>Signup Approved Date</b> &nbsp; {signUpDate}<td></tr>
+									<tr><td><b>Signup Date</b> &nbsp; {signUpDate}<td></tr>
 								{/signUpDate}
 							{/admin}
 						</table>
