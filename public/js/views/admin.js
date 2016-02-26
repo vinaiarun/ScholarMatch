@@ -46,6 +46,7 @@ define([
                 $("#userStatus #usName").html($parentEl.data("name"));
                 $("#userStatus #usRole").html($parentEl.data("role"));
                 $("#userStatus #usStatus").html($parentEl.data("status"));
+                $("#userStatus #usActive").html($parentEl.data("active"));
                 $("#userStatus #userId").val($parentEl.data("id"));
 
                 // console.log(e);

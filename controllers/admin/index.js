@@ -51,10 +51,11 @@ module.exports = function (router) {
 
         var userId = req.body.userId;
         var newStatus = req.body.newStatus;
+        var newActiveStatus = req.body.newActiveStatus;
 
 
         // debugger;
-        userLib.updateStatus(userId, newStatus, function (err, result) {
+        userLib.updateStatus(userId, newStatus, newActiveStatus, function (err, result) {
             if (err) {
                 req.flash('error', 'approval failed');
                 return res.redirect('/admin/listUserStatus');
