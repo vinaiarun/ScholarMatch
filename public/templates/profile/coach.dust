@@ -985,7 +985,9 @@
 			}
 
 			$( document ).ready(function() {
+				alert("hi");
 			    isComplete();
+			    alert("there");
 			});
 
 
