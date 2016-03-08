@@ -348,7 +348,7 @@
 						</div>
 								<br />
 							<center>
-								<button type="button" class="btnbtn-success" id="login-button" style="height:40px; width:200px; color:white; font-size:16px; opacity:.7; background-color:#663333; border-color:#663333; cursor:default;" onclick="">Not Completed...</button>
+								<button type="button" class="btnbtn-success" id="login-button" style="height:40px; width:200px; color:white; font-size:16px; opacity:.7; background-color:#663333; border-color:#663333; cursor:default;" onclick="">Continue</button>
 							</center>
 					</div>
 					<table style="width:100%; text-align:center; table-layout:fixed;">
@@ -399,69 +399,35 @@
 				makeHeaderUnclickable("clickable");
 			}
 
-			function undoSubmitButton(finished, about, contact, education, industry, completionPercent){
+
+			function undoSubmitButton(finished, about, contact, education, industry){
 				$('.btnbtn-success').prop('type','button');
 				$('.btnbtn-success').css('background-color','#663333');
 				$('.btnbtn-success').css('border-color','#663333');
 				$('.btnbtn-success').css('cursor','default');	
 				$('.btnbtn-success').css('opacity','.7');
 
-
-				//add a go to next button or something here instead
 				$('.btnbtn-success').text("Continue");
 
-				if(!finished[0]){
-					loadAbout();
-				}
-				else if(!finished[1]){
-					loadContact();
-				}
-				else if(!finished[2]){
-					loadEducation();
-				}
-				else if(!finished[3]){
-					loadIndustry();
-				}
-				else if(!finished[4]){
-					loadReferences();
-				}
-
-				//$('.btnbtn-success').text(completionPercent + "% Completed...");
+				$('.btnbtn-success').on('click', function(e) {
+					if(!finished[0]){	
+						loadAbout();
+					}
+					else if(!finished[1]){
+						loadContact();
+					}
+					else if(!finished[2]){
+						loadEducation();
+					}
+					else if(!finished[3]){
+						loadIndustry();
+					}
+					else if(!finished[4]){
+						loadReferences();
+					}
+				});
 
 				makeHeaderUnclickable("unclickable");
-			}
-
-			function percentComplete(education, education2, industry, industry2){
-				var totalFields = 12;
-				var totalCompleted = 0;
-				if($('#fullName').val())
-					totalCompleted++;
-				if($('#preferredName').val())
-					totalCompleted++;
-				if($('.genderRadios').is(':checked') || $('.genderRadios2').is(':checked'))
-					totalCompleted++;
-				if($('#additionalPersonalInfo').val())
-					totalCompleted++;
-
-				if($('#email').val())
-					totalCompleted++;
-				if($('#phone').val())
-					totalCompleted++;
-				if($('#address').val())
-					totalCompleted++;
-				if($('#location').val())
-					totalCompleted++;
-
-				if(education2)
-					totalCompleted++;
-				if(education)
-					totalCompleted++;
-				if(industry)
-					totalCompleted++;
-				if(industry2)
-					totalCompleted++;
-
-				return (totalCompleted/totalFields)*100;
 			}
 
 
@@ -578,8 +544,7 @@
 					makeSubmitButton();
 				}
 				else {
-					var completionPercent = Math.round(percentComplete(education, education2, industry, industry2));
-					undoSubmitButton(finished, about, contact, education, industry, completionPercent);
+					undoSubmitButton(finished, about, contact, education, industry);
 				}
 			}
 
@@ -590,130 +555,6 @@
 
 
 
-var onPage = "";
-
-            var afterHash = window.location.href.split("#");
-            var menuIDs = ["edit-settings-header-about","edit-settings-header-contact","edit-settings-header-education","edit-settings-header-industry","edit-settings-header-references"];
-            var contentIDs = ["edit-settings-content-about","edit-settings-content-contact","edit-settings-content-education","edit-settings-content-industry","edit-settings-content-references"];
-
-            //all or about
-            if (afterHash.length < 2 || afterHash[1].toUpperCase() == "ABOUT"){
-                $("#" + menuIDs[0]).css("background-color","white");
-                $("#" + contentIDs[0]).toggleClass("edit-settings-content-items-hidden");
-                onPage = "about";
-            }
-            //update email, phone, location, meeting format
-            else if(afterHash[1].toUpperCase() == "CONTACT"){
-                $("#" + menuIDs[1]).css("background-color","white");
-                $("#" + contentIDs[1]).toggleClass("edit-settings-content-items-hidden");
-                onPage = "contact";
-            }
-            //update school, major & year if student |||| school, major, grad school, major if coach
-            else if(afterHash[1].toUpperCase() == "EDUCATION"){
-                $("#" + menuIDs[2]).css("background-color","white");
-                $("#" + contentIDs[2]).toggleClass("edit-settings-content-items-hidden");
-                onPage = "education";
-            }
-            //update desired primary, secondary industries & previous jobs for student
-            //update industry, job title, years, company for both primary and secondary for coach
-            else if(afterHash[1].toUpperCase() == "INDUSTRY"){
-                $("#" + menuIDs[3]).css("background-color","white");
-                $("#" + contentIDs[3]).toggleClass("edit-settings-content-items-hidden");
-                onPage = "industry";
-            }
-            //only for coach, update primary & secondary reference's phone, email, name
-            else if(afterHash[1].toUpperCase() == "REFERENCES"){
-                $("#" + menuIDs[4]).css("background-color","white");
-                $("#" + contentIDs[4]).toggleClass("edit-settings-content-items-hidden");
-                onPage = "references";
-            }
-
-            //if click on another header, open that
-            $('#edit-settings-header-about').on('click', function(e) {
-                loadAbout();
-            });
-            $('#edit-settings-header-contact').on('click', function(e) {
-                loadContact();
-            });
-            $('#edit-settings-header-education').on('click', function(e) {
-                loadEducation();
-            });
-            $('#edit-settings-header-industry').on('click', function(e) {
-                loadIndustry();
-            });
-            $('#edit-settings-header-references').on('click', function(e) {
-                loadReferences();
-            });
-
-            function loadAbout(){
-                for(var i = 0; i < contentIDs.length; i++){
-                    $("#" + contentIDs[i]).removeClass();
-                    $("#" + contentIDs[i]).addClass("edit-settings-content-items-hidden");             
-                    $("#" + contentIDs[i]).css('height','0px');
-                    $("#" + menuIDs[i]).css("background-color","#EFECE0");
-                }
-                $("#" + menuIDs[0]).css("background-color","white");
-                $("#" + contentIDs[0]).toggleClass("edit-settings-content-items-hidden");          
-                $("#" + contentIDs[0]).css('height','100%');
-                $("html,body").animate({scrollTop: 0},750);
-                onPage = "about";
-            }
-
-            function loadContact(){
-                for(var i = 0; i < contentIDs.length; i++){
-                    $("#" + contentIDs[i]).removeClass();
-                    $("#" + contentIDs[i]).addClass("edit-settings-content-items-hidden");          
-                    $("#" + contentIDs[i]).css('height','0px');
-                    $("#" + menuIDs[i]).css("background-color","#EFECE0");
-                }
-                $("#" + menuIDs[1]).css("background-color","white");
-                $("#" + contentIDs[1]).toggleClass("edit-settings-content-items-hidden");        
-                $("#" + contentIDs[1]).css('height','100%');
-                $("html,body").animate({scrollTop: 0}, 750);
-                onPage = "contact";
-            }
-
-            function loadEducation(){
-                for(var i = 0; i < contentIDs.length; i++){
-                    $("#" + contentIDs[i]).removeClass();
-                    $("#" + contentIDs[i]).addClass("edit-settings-content-items-hidden");          
-                    $("#" + contentIDs[i]).css('height','0px');
-                    $("#" + menuIDs[i]).css("background-color","#EFECE0");
-                }
-                $("#" + menuIDs[2]).css("background-color","white");
-                $("#" + contentIDs[2]).toggleClass("edit-settings-content-items-hidden");        
-                $("#" + contentIDs[2]).css('height','100%');
-                $("html,body").animate({scrollTop: 0}, 750);
-                onPage = "education";
-            }
-
-            function loadIndustry(){
-                for(var i = 0; i < contentIDs.length; i++){
-                    $("#" + contentIDs[i]).removeClass();
-                    $("#" + contentIDs[i]).addClass("edit-settings-content-items-hidden");          
-                    $("#" + contentIDs[i]).css('height','0px');
-                    $("#" + menuIDs[i]).css("background-color","#EFECE0");
-                }
-                $("#" + menuIDs[3]).css("background-color","white");
-                $("#" + contentIDs[3]).toggleClass("edit-settings-content-items-hidden");        
-                $("#" + contentIDs[3]).css('height','100%');
-                $("html,body").animate({scrollTop: 0}, 750);
-                onPage = "industry";
-            }
-
-            function loadReferences(){
-                for(var i = 0; i < contentIDs.length; i++){
-                    $("#" + contentIDs[i]).removeClass();
-                    $("#" + contentIDs[i]).addClass("edit-settings-content-items-hidden");          
-                    $("#" + contentIDs[i]).css('height','0px');
-                    $("#" + menuIDs[i]).css("background-color","#EFECE0");
-                }
-                $("#" + menuIDs[4]).css("background-color","white");
-                $("#" + contentIDs[4]).toggleClass("edit-settings-content-items-hidden");        
-                $("#" + contentIDs[4]).css('height','100%');
-                $("html,body").animate({scrollTop: 0}, 750);
-                onPage = "references";
-            }
 		</script>
 	{/data.result}
 {/body}
