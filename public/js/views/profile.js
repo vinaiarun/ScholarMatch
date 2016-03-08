@@ -21,6 +21,7 @@ define([
     });
 
 
+            
             var onPage = "";
 
             var afterHash = window.location.href.split("#");
