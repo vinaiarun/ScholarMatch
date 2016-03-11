@@ -122,7 +122,7 @@
 									<tr>
 										<td class="edit-settings-content-table-left">One Interesting Fact <span style="color:red">*</span></td>
 										<td class="edit-settings-content-table-right">
-											<textarea rows="4" cols="35" name="additionalPersonalInfo" id="additionalPersonalInfo" placeholder="Tell us one interesting face a student would want to know" autofocus="" onkeydown="isComplete()" onkeyup="isComplete()" onpaste="isComplete()">
+											<textarea rows="4" cols="35" name="additionalPersonalInfo" id="additionalPersonalInfo" placeholder="Tell us one interesting fact a student would want to know" autofocus="" onkeydown="isComplete()" onkeyup="isComplete()" onpaste="isComplete()">
 												{#additionalPersonalInfo}
 													{additionalPersonalInfo}
 												{/additionalPersonalInfo}
@@ -622,7 +622,8 @@
 
 				$('.btnbtn-success').text("Continue");
 
-				$('.btnbtn-success').on('click', function(e) {
+				/*$('.btnbtn-success').on('click', function(e) {*/
+				$(".btnbtn-success").unbind().click(function(){
 					if(!finished[0]){	
 						loadAbout();
 					}
@@ -639,7 +640,6 @@
 						loadReferences();
 					}
 				});
-
 
 				makeHeaderUnclickable("unclickable");
 			}
@@ -670,7 +670,7 @@
 				}
 				else{
 					contact = false;
-					$('#contact-status').text("Contact:Not Completed...Click Here"); $('#contact-status').css('color','black'); $('#contact-complete').removeClass('fa fa-check');
+					$('#contact-status').text("Contact: Not Completed...Click Here"); $('#contact-status').css('color','black'); $('#contact-complete').removeClass('fa fa-check');
 				}
 
 				var education2 = false;

@@ -409,7 +409,8 @@
 
 				$('.btnbtn-success').text("Continue");
 
-				$('.btnbtn-success').on('click', function(e) {
+				/*$('.btnbtn-success').on('click', function(e) {*/
+				$(".btnbtn-success").unbind().click(function(){
 					if(!finished[0]){	
 						loadAbout();
 					}
