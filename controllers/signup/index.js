@@ -47,7 +47,7 @@ module.exports = function (router) {
         var userId = req.query.userId;
 
         // debugger;
-        userLib.updateStatus(userId, "Profile Approved", function (err, result) {
+        userLib.updateStatus(userId, "Profile Approved", null, function (err, result) {
             if (err) {
                 req.flash('error', 'approval failed');
                 return res.redirect('/signup/pending');
@@ -104,7 +104,7 @@ module.exports = function (router) {
         var userId = req.query.userId;
 
         // debugger;
-        userLib.updateStatus(userId, "Profile Rejected", function (err, result) {
+        userLib.updateStatus(userId, "Profile Rejected", null, function (err, result) {
             if (err) {
                 req.flash('error', 'approval failed');
                 return res.redirect('/signup/pending');
@@ -122,7 +122,7 @@ module.exports = function (router) {
         var userId = req.query.userId;
 
         // debugger;
-        userLib.updateStatus(userId, "Exit Survey Complete", function (err, result) {
+        userLib.updateStatus(userId, "Exit Survey Complete", null, function (err, result) {
             if (err) {
                 req.flash('error', 'approval failed');
                 return res.redirect('/admin/exitInterviewComplete');
