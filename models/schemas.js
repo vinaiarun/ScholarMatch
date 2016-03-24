@@ -343,7 +343,11 @@ var meetingSchema = Schema({
 
 meetingSchema.statics.findAll = function (callback) {
     // this.find({}, callback);
-    this.find({}).populate({
+
+    var startDate = new Date();
+    startDate.setMonth(startDate.getMonth() - 6);
+
+    this.find({meetingdate: {$gt: startDate}}).populate({
         path: 'attendees',
         model: 'User',
         select: 'fullName email phone college industry role gender experience city'
@@ -418,7 +422,6 @@ relationshipSchema.statics.findConnectionPending = function (callback) {
         select: 'fullName email phone college industry role gender experience city'
     })
         .exec(callback);
-
 };
 
 relationshipSchema.statics.findOrientationPending = function (callback) {
@@ -434,7 +437,6 @@ relationshipSchema.statics.findOrientationPending = function (callback) {
         select: 'fullName email phone college industry role gender experience city'
     })
         .exec(callback);
-
 };
 
 relationshipSchema.statics.findOrientationProgress = function (callback) {
@@ -449,7 +451,6 @@ relationshipSchema.statics.findOrientationProgress = function (callback) {
         select: 'fullName email phone college industry role gender experience city'
     })
         .exec(callback);
-
 };
 
 relationshipSchema.statics.findOrientationComplete = function (callback) {
@@ -464,7 +465,6 @@ relationshipSchema.statics.findOrientationComplete = function (callback) {
         select: 'fullName email phone college industry role gender experience city'
     })
         .exec(callback);
-
 };
 
 relationshipSchema.statics.findCompletionPending = function (callback) {
@@ -479,13 +479,12 @@ relationshipSchema.statics.findCompletionPending = function (callback) {
         select: 'fullName email phone college industry role gender experience city'
     })
         .exec(callback);
-
 };
+
 relationshipSchema.statics.findById = function (id, callback) {
     this.findOne({
         _id: id
     }, callback);
-
 };
 
 var attendeeSchema = Schema({
@@ -519,7 +518,8 @@ var meetingNotesSchema = Schema({
 });
 
 meetingNotesSchema.statics.findAll = function(callback) {
-    this.find({}, callback);
+    this.find({
+    }, callback);
 };
 meetingNotesSchema.statics.findByUserAndMeetingId = function(userid, meetingid, callback) {
     this.findOne({
