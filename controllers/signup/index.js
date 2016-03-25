@@ -122,7 +122,7 @@ module.exports = function (router) {
         var userId = req.query.userId;
 
         // debugger;
-        userLib.updateStatus(userId, "Exit Survey Complete", null, function (err, result) {
+        userLib.updateStatus(userId, "Exit Survey Completed", null, function (err, result) {
             if (err) {
                 req.flash('error', 'approval failed');
                 return res.redirect('/admin/exitInterviewComplete');

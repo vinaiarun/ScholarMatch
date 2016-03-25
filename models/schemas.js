@@ -299,6 +299,8 @@ userSchema.statics.findByObjQuery = function (objQuery, display, callback) {
 };
 
 userSchema.statics.findByObjQueryAndDisplaySelected = function (objQuery, display, callback) {
+    console.log("---- findByObjQueryAndDisplaySelected ----- ");
+    console.dir(objQuery);
     this.find(objQuery, display, callback);
 }
 
@@ -313,18 +315,45 @@ userSchema.statics.findAllCoaches = function(callback) {
     console.log("----findAllCoaches - unmatched -------");
     this.find({
         role: 'coach',
+        active: 'Active',
         studentsLinked: {$size: 0}
     }).exec(callback);
 }
 userSchema.statics.findEveryCoach = function(callback) {
-   this.find({
-        role: 'coach',
-    }).exec(callback);
+   this.find( {  
+   $and:[  
+      {  
+         role:"coach"
+      },
+      {  
+         active:"Active"
+      },
+      {  
+         status: {$regex: /^((?!profile created).)*$/i,}
+      },
+      {  
+         status: {$regex: /^((?!profile rejected).)*$/i,}
+      }
+   ]
+}).exec(callback);
 }
 userSchema.statics.findEveryStudent = function(callback) {
-    this.find({
-        role: 'student',
-        }).exec(callback);
+    this.find({  
+   $and:[  
+      {  
+         role:"student"
+      },
+      {  
+         active:"Active"
+      },
+      {  
+         status: {$regex: /^((?!profile created).)*$/i,}
+      },
+      {  
+         status: {$regex: /^((?!profile rejected).)*$/i,}
+      }
+   ]
+}).exec(callback);
 }
 
 var meetingSchema = Schema({
