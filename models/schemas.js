@@ -5,6 +5,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcryptjs'),
+    moment = require('moment'),
     uniqueValidator = require('mongoose-unique-validator'),
     mongooseHidden = require('mongoose-hidden')({
         defaultHidden: {
@@ -373,10 +374,10 @@ var meetingSchema = Schema({
 meetingSchema.statics.findAll = function (callback) {
     // this.find({}, callback);
 
-    var startDate = new Date();
-    startDate.setMonth(startDate.getMonth() - 6);
+    var startDate = moment().subtract(6, 'months').calendar();
 
-    this.find({meetingdate: {$gt: startDate}}).populate({
+    console.log("startDate: " + startDate );
+    this.find({meetingdate: {$gt: startDate}}).populate({    
         path: 'attendees',
         model: 'User',
         select: 'fullName email phone college industry role gender experience city'
