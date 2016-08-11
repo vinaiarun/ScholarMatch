@@ -19,10 +19,10 @@ module.exports = function (router) {
 
         if (req.session.user._id) {
             console.log("Initializing model.data...");
-            model.data = model.data || {};
+            model.data = {};
             model.data.coach = {};
             model.data.student = {};
-            model.data.meetingnotes = model.data.meetingnotes || {};
+            model.data.meetingnotes = {};
 
             model.data.meetingId = req.query.meetingId; 
             model.data.userId = req.session.user._id;
