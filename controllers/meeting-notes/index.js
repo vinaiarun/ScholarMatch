@@ -68,13 +68,17 @@ module.exports = function (router) {
                     model.data.meetingrec = JSON.parse(JSON.stringify(meetingRec));
                     for(var i = 0; i < model.data.meetingrec.attendees.length; i++){
                         if(model.data.meetingrec.attendees[i]._id === req.session.user._id) {
+                            console.log("meeting-notes - inside if block");
                             model.data.meetingrec.notescreator = model.data.meetingrec.attendees[i].fullName;
                         }
                         else {
+                            console.log("meeting-notes - inside else block");
                             model.data.meetingrec.attendee = model.data.meetingrec.attendees[i].fullName;
                         }
                     }
-                    console.log(model.data.meetingrec);
+                    console.log("meeting-notes - meetingrec: " + model.data.meetingrec);
+                    console.log("meeting-notes - userId: " + req.session.user._id);
+                    console.log("meeting-notes - meetingId: " + req.query.meetingId);
 
                     MeetingNotes.findByUserAndMeetingId(req.session.user._id, req.query.meetingId, function (err, meetingnotesrec) {
 
