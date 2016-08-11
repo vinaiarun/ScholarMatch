@@ -13,7 +13,7 @@ module.exports = function (router) {
     var userrole = '';
     var notesExists = 0;
 
-    var meetingnotesrec;
+    var meetingnotesrec = null;
 
     router.get('/', function (req, res) {
 
