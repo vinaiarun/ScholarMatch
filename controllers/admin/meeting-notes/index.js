@@ -13,6 +13,8 @@ module.exports = function (router) {
     var userrole = '';
     var notesExists = 0;
 
+    var meetingnotesrec;
+
     router.get('/', function (req, res) {
 
         if (req.session.user._id) {
