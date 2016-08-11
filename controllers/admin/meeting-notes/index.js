@@ -19,8 +19,11 @@ module.exports = function (router) {
             model.data = model.data || {};
             model.data.meetingId = req.query.meetingId; 
             model.data.userId = req.session.user._id;
-            
+
+            console.log("admin meeting-notes - meetingId: " + req.query.meetingId);
+
             MeetingNotes.findAllByMeetingId(req.query.meetingId, function (err, meetingnotesrec) {
+                console.log("admin meeting-notes - meetingnotesrec: " + meetingnotesrec);
             	// debugger;
                 if (err) {
                     console.log('Error looking up meeting notes');
@@ -68,11 +71,11 @@ module.exports = function (router) {
             	}
             });	
 
-        
+
         }
         else {
           res.redirect('/login');  
         }
-        
+
     });
 }
