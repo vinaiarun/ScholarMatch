@@ -13,9 +13,9 @@ module.exports = function (router) {
     var userrole = '';
     var notesExists = 0;
 
-    var meetingnotesrec = null;
-
     router.get('/', function (req, res) {
+
+    	var meetingnotesrec = null;
 
         if (req.session.user._id) {
             model.data = model.data || {};
