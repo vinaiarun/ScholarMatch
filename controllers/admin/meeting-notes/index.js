@@ -18,7 +18,12 @@ module.exports = function (router) {
     	var meetingnotesrec = null;
 
         if (req.session.user._id) {
+            console.log("Initializing model.data...");
             model.data = model.data || {};
+            model.data.coach = {};
+            model.data.student = {};
+            model.data.meetingnotes = model.data.meetingnotes || {};
+
             model.data.meetingId = req.query.meetingId; 
             model.data.userId = req.session.user._id;
 
@@ -34,12 +39,9 @@ module.exports = function (router) {
                    }
                 // console.log(meetingnotesrec)
                 if(meetingnotesrec) {
-                    model.data = model.data || {};
-                    model.data.meetingnotes = model.data.meetingnotes || {};
                     model.data.meetingnotes = JSON.parse(JSON.stringify(meetingnotesrec));
                     for(var i=0; i < model.data.meetingnotes.length; i++) {
             			if(model.data.meetingnotes[i].notesBy.role == 'coach') {
-            				model.data.coach = {};
             				model.data.coach.notesWriter = model.data.meetingnotes[i].notesBy.fullName;
             				model.data.coach.interactionType = model.data.meetingnotes[i].interactionType;
             				model.data.coach.materialUsefulness = model.data.meetingnotes[i].materialUsefulness;
@@ -51,8 +53,7 @@ module.exports = function (router) {
             				model.data.coach.speakWithStaff = model.data.meetingnotes[i].speakWithStaff;
 
             			}
-            			else if(model.data.meetingnotes[i].notesBy.role == 'student') {
-                            model.data.student = {};
+`           			else if(model.data.meetingnotes[i].notesBy.role == 'student') {
             				model.data.student.notesWriter = model.data.meetingnotes[i].notesBy.fullName;
             				model.data.student.interactionType = model.data.meetingnotes[i].interactionType;
             				model.data.student.materialUsefulness = model.data.meetingnotes[i].materialUsefulness;
